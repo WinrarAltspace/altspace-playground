@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head>
+<script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+<script src="https://sdk.altvr.com/libs/altspace.js/2.6.1/altspace.min.js"></script>
+</head>
+<body>
+    <a-scene debug altspace="fullspace: true" sync-system="author: winrar; app: murloc-test">
+  <a-assets>
+    <a-asset-item id="murloc-obj" src="murloc.obj"></a-asset-item>
+    <a-asset-item id="murloc-mtl" src="murloc.mtl"></a-asset-item>
+    <a-mixin id="murloc"
+
+      position="0 0 0"
+
+      scale="2 2 2"
+
+      obj-model="obj: #murloc-obj; mtl: #murloc-mtl"
+
+      n-skeleton-parent="part: head;"
+
+      sync sync-n-skeleton-parent>
+
+    </a-mixin>
+  </a-assets>
+  <a-entity one-per-user="mixin: murloc"></a-entity>
+</a-scene>
+ </body>
+</html>

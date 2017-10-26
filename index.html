@@ -2,6 +2,31 @@
 <html><head>
 <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
 <script src="https://sdk.altvr.com/libs/altspace.js/2.6.1/altspace.min.js"></script>
+<script>
+
+      // n-skeleton-parent only works with root meshes at the moment. Since most model loaders use a root
+
+      // container object, we need to collapse the model so that n-skeleton-parent can access the mesh directly.
+
+      AFRAME.registerComponent('collapse-model', {
+
+        init: function () {
+
+          this.el.addEventListener('model-loaded', function () {
+
+            this.el.setObject3D('mesh', this.el.object3DMap.mesh.children[0]);
+
+            // setObject3D emits this event in a-frame 0.4.0
+
+            this.el.emit('object3dset', {type: 'mesh'});
+
+          }.bind(this));
+
+        }
+
+      });
+
+    </script>
 </head>
 <body>
     <a-scene altspace="fullspace: true" sync-system="author: winrar; app: murloc-test">
@@ -9,6 +34,10 @@
     <a-asset-item id="murloc-obj" src="murloc.obj"></a-asset-item>
     <a-asset-item id="murloc-mtl" src="murloc.mtl"></a-asset-item>
     <a-mixin id="murloc"
+
+      position="0 0 0"
+
+      scale="2 2 2"
 
       obj-model="obj: #murloc-obj; mtl: #murloc-mtl" collapse-model
 

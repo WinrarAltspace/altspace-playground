@@ -33,21 +33,26 @@
   <a-assets>
     <a-asset-item id="murloc-obj" src="murloc.obj"></a-asset-item>
     <a-asset-item id="murloc-mtl" src="murloc.mtl"></a-asset-item>
+    <a-mixin id="parent-to-head"
+
+          position="0 0.05 0.03"
+
+          n-skeleton-parent="part: head;"
+
+          sync sync-n-skeleton-parent></a-mixin>
     <a-mixin id="murloc"
 
-      position="0 0 0"
-
-      scale="2 2 2"
-
-      obj-model="obj: #murloc-obj; mtl: #murloc-mtl" collapse-model
-
-      n-skeleton-parent="part: head;"
-
-      sync sync-n-skeleton-parent>
+      obj-model="obj: #murloc-obj; mtl: #murloc-mtl" collapse-model>
 
     </a-mixin>
   </a-assets>
-  <a-entity one-per-user="mixin: murloc"></a-entity>
+  <a-entity
+
+        id="initial-synced-box"
+
+        one-per-user="mixin: murloc parent-to-head">
+
+      </a-entity>
 </a-scene>
  </body>
 </html>
